@@ -23,4 +23,12 @@ export const items = [
     value: 15,
     playerId: 3,
   },
+  {
+    id: 4,
+    name: "Large serving of spaghetti",
+    quality: "common",
+    type: "consumable",
+    value: 12,
+    playerId: NaN,
+  },
 ];
