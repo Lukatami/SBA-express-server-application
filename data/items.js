@@ -29,6 +29,6 @@ export const items = [
     quality: "common",
     type: "consumable",
     value: 12,
-    playerId: NaN,
+    playerId: undefined,
   },
 ];

@@ -3,10 +3,12 @@ import { players } from "../data/players.js";
 
 const router = express.Router();
 
+// Base endpoing GET request
 router.get("/", (req, res) => {
   res.json(players);
 });
 
+// GET request with id param
 router.get("/:id", (req, res) => {
   const id = Number(req.params.id);
   const player = players.find((p) => p.id === id);
@@ -16,8 +18,10 @@ router.get("/:id", (req, res) => {
   res.json(player);
 });
 
+// POST request - add new object
 router.post("/", (req, res) => {
-  // Sample body for POST request { "name": "TestName", "class": "TestClass" }
+  // URL: http://localhost:3000/players
+  // Sample body for POST request: { "name": "TestName", "class": "TestClass" }
 
   const { name: playerName, class: className, level: playerLevel } = req.body;
 
@@ -37,8 +41,10 @@ router.post("/", (req, res) => {
   res.status(201).json(newPlayer);
 });
 
+// PUT request - replace all object data
 router.put("/:id", (req, res) => {
-  // Sample body for PUT request { "name": "Bob's brother", "class": "The Builder", "level": "13"}
+  // URL: http://localhost:3000/players/1
+  // Sample body for PUT request: { "name": "Bob's brother", "class": "The Builder", "level": "13"}
   const id = Number(req.params.id);
   const { name: playerName, class: playerClass, level: playerLevel } = req.body;
 
@@ -61,8 +67,10 @@ router.put("/:id", (req, res) => {
   res.json(player);
 });
 
+// PATCH request - replace all or part of object data
 router.patch("/:id", (req, res) => {
-  // Sample body for PATCH request { "name": "Bilbo Baggins", "class": "Hobbit", "level": "10"}
+  // URL: http://localhost:3000/players/1
+  // Sample body for PATCH request: { "name": "Bilbo Baggins", "class": "Hobbit", "level": "10"}
   const id = Number(req.params.id);
   const player = players.find((p) => p.id === id);
 
@@ -77,6 +85,23 @@ router.patch("/:id", (req, res) => {
   if (playerLevel !== undefined) player.level = Number(playerLevel);
 
   res.json(player);
+});
+
+// DELETE request - delete object with id param
+router.delete("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const index = players.findIndex((p) => p.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Player not found" });
+  }
+
+  const deletedPlayer = players.splice(index, 1)[0];
+
+  res.json({
+    message: "Player Deleted Successfully",
+    player: deletedPlayer,
+  });
 });
 
 export default router;
