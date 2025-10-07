@@ -1,4 +1,4 @@
-[
+export const items = [
   {
     id: 1,
     name: "French dictionary",

@@ -1,4 +1,4 @@
-[
+export const players = [
   {
     id: 1,
     name: "Bob",

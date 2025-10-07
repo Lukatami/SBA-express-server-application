@@ -1,4 +1,4 @@
-[
+export const quests = [
   {
     id: 1,
     title: "Save the Earth",
@@ -16,11 +16,11 @@
     playerId: 2,
   },
   {
-    id: 1,
+    id: 3,
     title: "Divide by zero",
     description: "Common sense and the laws of nature tremble before you!",
     reward: "Large serving of spaghetti",
     completed: false,
-    playerId: 1,
+    playerId: 3,
   },
 ];
