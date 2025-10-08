@@ -84,7 +84,7 @@ router.put("/:id", (req, res) => {
 // PATCH request - replace all or part of object data
 router.patch("/:id", (req, res) => {
   // URL: http://localhost:3000/items/1
-  // Sample body for PUT request: { "name": "Poo-poo Hat", "quality": "common", "type": "equipment", "value": 10, "playerId": 1 }
+  // Sample body for PUT request: { "name": "Wolf Mask", "quality": "rare", "type": "equipment", "value": 20, "playerId": 1 }
   const id = Number(req.params.id);
   const item = items.find((p) => p.id === id);
 
@@ -104,7 +104,7 @@ router.patch("/:id", (req, res) => {
   if (itemQuality !== undefined) item.quality = itemQuality;
   if (itemType !== undefined) item.type = itemType;
   if (itemValue !== undefined) item.value = Number(itemValue);
-  if (ownerId !== undefined) item.ownerId = Number(ownerId);
+  if (ownerId !== undefined) item.playerId = Number(ownerId);
 
   res.json(item);
 });

@@ -1,4 +1,5 @@
 import express from "express";
+import logger from "./middleware/logger.js";
 import playersRouter from "./routes/r-players.js";
 import itemsRouter from "./routes/r-items.js";
 import questsRouter from "./routes/r-quests.js";
@@ -8,6 +9,7 @@ const port = 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(logger);
 
 app.use("/players", playersRouter);
 app.use("/items", itemsRouter);
