@@ -1,14 +1,17 @@
 import express from "express";
 import { items } from "../data/items.js";
+import idValidation from "../middleware/idValidation.js";
 
 const router = express.Router();
 
+// Base endpoing GET request
 router.get("/", (req, res) => {
   res.json(items);
 });
 
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
+// GET request with id param
+router.get("/:id", idValidation, (req, res) => {
+  const id = req.validId;
   const item = items.find((i) => i.id === id);
   if (!item) {
     return res.status(404).json({ error: "Item not found" });
@@ -48,10 +51,10 @@ router.post("/", (req, res) => {
 });
 
 // PUT request - replace all object data
-router.put("/:id", (req, res) => {
+router.put("/:id", idValidation, (req, res) => {
   // URL: http://localhost:3000/items/1
   // Sample body for PUT request: { "name": "Poo-poo Hat", "quality": "common", "type": "equipment", "value": 10, "playerId": 1 }
-  const id = Number(req.params.id);
+  const id = req.validId;
   const {
     name: itemName,
     quality: itemQuality,
@@ -82,10 +85,10 @@ router.put("/:id", (req, res) => {
 });
 
 // PATCH request - replace all or part of object data
-router.patch("/:id", (req, res) => {
+router.patch("/:id", idValidation, (req, res) => {
   // URL: http://localhost:3000/items/1
   // Sample body for PUT request: { "name": "Wolf Mask", "quality": "rare", "type": "equipment", "value": 20, "playerId": 1 }
-  const id = Number(req.params.id);
+  const id = req.validId;
   const item = items.find((p) => p.id === id);
 
   if (!item) {
@@ -110,8 +113,8 @@ router.patch("/:id", (req, res) => {
 });
 
 // DELETE request - delete object with id param
-router.delete("/:id", (req, res) => {
-  const id = Number(req.params.id);
+router.delete("/:id", idValidation, (req, res) => {
+  const id = req.validId;
   const index = items.findIndex((p) => p.id === id);
 
   if (index === -1) {

@@ -1,14 +1,17 @@
 import express from "express";
 import { quests } from "../data/quests.js";
+import idValidation from "../middleware/idValidation.js";
 
 const router = express.Router();
 
+// Base endpoing GET request
 router.get("/", (req, res) => {
   res.json(quests);
 });
 
-router.get("/:id", (req, res) => {
-  const id = Number(req.params.id);
+// GET request with id param
+router.get("/:id", idValidation, (req, res) => {
+  const id = req.validId;
   const quest = quests.find((p) => p.id === id);
   if (!quest) {
     return res.status(404).json({ error: "Quest not found" });
@@ -50,10 +53,10 @@ router.post("/", (req, res) => {
 });
 
 // PUT request - replace all object data
-router.put("/:id", (req, res) => {
+router.put("/:id", idValidation, (req, res) => {
   // URL: http://localhost:3000/quests/1
   // Sample body for PUT request: { "title": "Dwemer Puzzle Box", "description": "Follow the path east of Balmora, across the bridge north of Fort Moonmoth", "reward": "Dwemer Axe", "playerId": 1 }
-  const id = Number(req.params.id);
+  const id = req.validId;
   const {
     title: questTitle,
     description: questDescription,
@@ -84,10 +87,10 @@ router.put("/:id", (req, res) => {
 });
 
 // PATCH request - replace all or part of object data
-router.patch("/:id", (req, res) => {
+router.patch("/:id", idValidation, (req, res) => {
   // URL: http://localhost:3000/quests/1
   // Sample body for PATCH request: { "title": "Dwemer Puzzle Box", "description": "Follow the path east of Balmora, across the bridge north of Fort Moonmoth", "reward": "Dwemer Axe", "playerId": 1 }
-  const id = Number(req.params.id);
+  const id = req.validId;
   const quest = quests.find((p) => p.id === id);
 
   if (!quest) {
@@ -112,8 +115,8 @@ router.patch("/:id", (req, res) => {
 });
 
 // DELETE request - delete object with id param
-router.delete("/:id", (req, res) => {
-  const id = Number(req.params.id);
+router.delete("/:id", idValidation, (req, res) => {
+  const id = req.validId;
   const index = quests.findIndex((p) => p.id === id);
 
   if (index === -1) {
