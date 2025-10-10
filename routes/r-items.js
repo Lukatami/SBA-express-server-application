@@ -65,7 +65,8 @@ router.get("/", (req, res) => {
   // http://localhost:3000/items?minValue=5&maxValue=100&sort=desc
   if (sort === "desc") filteredItems.sort((a, b) => b.value - a.value);
 
-  res.json(filteredItems);
+  // Render the page
+  res.render("items", { items: filteredItems });
 });
 
 // GET request with id param

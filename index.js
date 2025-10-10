@@ -14,6 +14,10 @@ const port = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware for using ejs and rendering
+app.set("view engine", "ejs")
+app.set("views", "./views")
+
 // Middleware for logging all requests
 app.use(logger);
 
@@ -24,7 +28,7 @@ app.use("/quests", questsRouter);
 
 // Base route to server
 app.get("/", (req, res) => {
-  res.send(`Nice to see you at http://localhost:${port}!`);
+  res.send(`Welcome to the server! At http://localhost:${port}`);
 });
 
 // Special route for check errorHandler middleware

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Items List</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #fff;
+        margin: 20px;
+        text-align: center;
+        max-width: 800px;
+      }
+
+      form {
+        margin-bottom: 10px;
+      }
+
+      input,
+      button {
+        padding: 5px;
+        margin: 2px;
+      }
+
+      ul {
+        text-align: left;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        margin: 3px 0;
+        padding: 5px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Items List</h1>
+    <form id="filterForm" action="/items" method="get">
+      <input type="text" name="quality" placeholder="Quality" />
+      <input type="text" name="type" placeholder="Type" />
+      <input type="number" name="minValue" placeholder="Min Value" />
+      <input type="number" name="maxValue" placeholder="Max Value" />
+      <input type="number" name="playerId" placeholder="Player ID" />
+      <select name="sort">
+        <option value="">Sort</option>
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+      <button type="submit">Filter</button>
+    </form>
+    <a href="/items">
+      <button type="button">Clear Filter</button>
+    </a>
+    <ul id="itemsList">
+      <% items.forEach(item => { %>
+      <li>
+        playerId <%= item.playerId || "n/a" %>: <%= item.name %> (<%= item.type
+        %>, <%= item.quality || "n/a" %>) — <%= item.value || 0 %> gold
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
