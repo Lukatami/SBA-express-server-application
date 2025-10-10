@@ -32,13 +32,13 @@
   ✅ Check GET / POST / PUT / PATCH / DELETE / Middleware
 
 - Create and render at least one view using a view template and template engine. This can be a custom template engine or a third-party engine.
-  ❌
+  ✅ Check ./views/items.ejs
 
 - Use simple CSS to style the rendered views.
-  ❌
+  ✅ Check internal styling in head of ./views/items.ejs
 
 - Include a form within a rendered view that allows for interaction with your RESTful API.
-  ❌
+  ✅ Check ./views/items.ejs and try it http://localhost:3000/items
 
 - Utilize reasonable code organization practices.
   ✅ Organized with correct imports, external and internal code
