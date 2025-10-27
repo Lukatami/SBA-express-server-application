@@ -13,8 +13,7 @@
 - Create GET routes for all data that should be exposed to the client.
   ✅ Check ./routes/r-items.js ; ./routes/r-players.js ; ./routes/r-quests.js
 - Create POST routes for data, as appropriate. At least one data category should allow for client creation via a POST request.
-
-✅ Check ./routes/r-items.js ; ./routes/r-players.js ; ./routes/r-quests.js
+  ✅ Check ./routes/r-items.js ; ./routes/r-players.js ; ./routes/r-quests.js
 
 - Create PATCH or PUT routes for data, as appropriate. At least one data category should allow for client manipulation via a PATCH or PUT request.
   ✅ Check ./routes/r-items.js ; ./routes/r-players.js ; ./routes/r-quests.js
@@ -50,7 +49,7 @@
   ✅ 10+ commits
 
 - Include a README file that contains a description of your application.
-  ❌
+  ✅ Check README.md
 
 - Level of effort displayed in creativity, presentation, and user experience.
   ✅ Nice RPG theme

@@ -36,7 +36,7 @@ app.get("/test-error", (req, res) => {
   throw new Error("Errors handling Tested successfully");
 });
 
-// errorHandler after all routes
+// errorHandler middleware after all routes
 app.use(errorHandler);
 
 // confirmation of server running
